@@ -8,6 +8,7 @@ import Empanadas from './views/Empanadas';
 import Bebidas from './views/Bebidas';
 import Postres from './views/Postres';
 import Categories from './components/Categories';
+import PurchaseConfirmation from './views/PurchaseConfirmation';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/bebidas" element={<Bebidas/>}/>
         <Route path="/postres" element={<Postres/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/confirmacion-de-compra" element={<PurchaseConfirmation/>}/>
       </Routes>
     </div>
   );
