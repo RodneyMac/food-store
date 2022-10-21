@@ -15,7 +15,7 @@ const cartSLice = createSlice({
       const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
       if(itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        toast.info(`Incrementar ${state.cartItems[itemIndex].title} al carrito`, {
+        toast.info(`Se incrementó ${state.cartItems[itemIndex].title} al carrito`, {
           position: "bottom-left",
         });
       } else {
@@ -45,7 +45,7 @@ const cartSLice = createSlice({
       if(state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
 
-        toast.info(`Disminuir ${action.payload.title} del carrito`, {
+        toast.info(`Se disminuyó ${action.payload.title} del carrito`, {
           position: "bottom-left",
         });
       } else if(state.cartItems[itemIndex].cartQuantity === 1) {
