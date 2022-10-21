@@ -9,12 +9,15 @@ import Bebidas from './views/Bebidas';
 import Postres from './views/Postres';
 import Categories from './components/Categories';
 import PurchaseConfirmation from './views/PurchaseConfirmation';
+import "react-toastify/dist/ReactToastify.css";
+import {ToastContainer} from "react-toastify";
 
 function App() {
   return (
     <div>
       <Navbar/>
       <Categories/>
+      <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/pizzas" element={<Pizzas/>}/>

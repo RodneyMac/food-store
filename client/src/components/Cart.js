@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart, decreaseCart, clearCart, getTotals } from '../features/cartSlice';
+import { addToCart, removeFromCart, decreaseCart, clearCart, getTotals, paidProduct } from '../features/cartSlice';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -27,6 +27,10 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
+  const handlePaidProduct = () => {
+    dispatch(paidProduct());
+  }
 
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center mt-4">
@@ -76,7 +80,7 @@ const Cart = () => {
                 <span className='text-info'>Sub total</span>
                 <span className="text-warning mx-2">${cart.cartTotalAmount}</span>
               </div>
-              <Link to="/confirmacion-de-compra" className='btn btn-outline-primary mx-4' onClick={handleClearCart}>Pagar</Link>
+              <Link to="/confirmacion-de-compra" className='btn btn-outline-primary mx-4' onClick={handlePaidProduct}>Pagar</Link>
             </div>
           </div>
         </div>

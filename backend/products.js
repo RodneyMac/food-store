@@ -2,7 +2,7 @@ const products = [
   {
     id: 1,
     imgUrl: "https://res.cloudinary.com/de1xrxlcz/image/upload/v1665616990/muzzarella_mkapoi.webp",
-    title: "Muzzarella",
+    title: "Pizza Muzzarella",
     description: "Queso muzzarella y aceitunas",
     price: 400,
     category: "Pizzas"
@@ -10,7 +10,7 @@ const products = [
   {
     id: 2,
     imgUrl: "https://res.cloudinary.com/de1xrxlcz/image/upload/v1666198766/napolitana_upssdj.webp",
-    title: "Napolitana",
+    title: "Pizza Napolitana",
     description: "Tomate, morrón, queso y aceitunas",
     price: 400,
     category: "Pizzas"
@@ -18,7 +18,7 @@ const products = [
   {
     id: 3,
     imgUrl: "https://res.cloudinary.com/de1xrxlcz/image/upload/v1666198766/jamonymorron_li2xn9.webp",
-    title: "Jamón y Morrón",
+    title: "Pizza Jamón y Morrón",
     description: "Jamón, morrón, queso y aceitunas",
     price: 400,
     category: "Pizzas"
