@@ -12,7 +12,7 @@ const Pizzas = () => {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    navigate("/cart");
+    navigate("/carrito");
   }
 
   return (
@@ -28,7 +28,7 @@ const Pizzas = () => {
                   return(
                     <div className='col-md-4 mt-4' key={product.id}>
                       <div className='d-flex flex-column justify-content-center align-items-center'>
-                        <div className='text-warning d-flex'>ID:<div className='text-info mx-1'>{product.id}</div></div>
+                        {/* <div className='text-warning d-flex'>ID:<div className='text-info mx-1'>{product.id}</div></div> */}
                         <img src={product.imgUrl} alt={product.title} className="w-50 rounded"/>
                         <div className='text-info mt-1'>{product.title}</div>
                         <div className='text-white'>{product.description}</div>

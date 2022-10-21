@@ -21,7 +21,7 @@ function App() {
         <Route path="/empanadas" element={<Empanadas/>}/>
         <Route path="/bebidas" element={<Bebidas/>}/>
         <Route path="/postres" element={<Postres/>}/>
-        <Route path="/cart" element={<Cart/>}/>
+        <Route path="/carrito" element={<Cart/>}/>
         <Route path="/confirmacion-de-compra" element={<PurchaseConfirmation/>}/>
       </Routes>
     </div>

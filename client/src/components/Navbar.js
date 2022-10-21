@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className='my-2 mx-5'>
             <Link to="/" className='btn btn-outline-primary'>Inicio</Link>
           </div>
-          <Link to="/cart" className='d-flex align-items-center text-decoration-none my-2 mx-5 btn btn-outline-primary' role="button">
+          <Link to="/carrito" className='d-flex align-items-center text-decoration-none my-2 mx-5 btn btn-outline-primary' role="button">
               <BsCart3/>
             <div className='text-warning mx-2'>{cartTotalQuantity}</div>
           </Link>
