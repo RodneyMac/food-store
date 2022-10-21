@@ -18,7 +18,7 @@ const Bebidas = () => {
   return (
     <div className='container'>
       {
-        isLoading ? <div className="text-center mt-4">Loading...</div> : error ? <div>Ocurrió un error</div> : 
+        isLoading ? <h1 className="text-center mt-5 text-success">Loading...</h1> : error ? <h2 className="text-center mt-5 text-danger">Ocurrió un error</h2> : 
         <>
           <h4 className='text-info mt-4 text-center'>Bebidas</h4>
           <div className='d-flex justify-content-center align-items-center'>
