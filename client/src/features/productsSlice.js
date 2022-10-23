@@ -4,13 +4,16 @@ import axios from "axios";
 const initialState = {
   items: [],
   status: null,
-  error: null
+  error: null,
 };
 
-export const productsFetch = createAsyncThunk("products/productsFetch", async () => {
-  const response = await axios.get("http://localhost:5000/products")
-  return response?.data
-})
+export const productsFetch = createAsyncThunk(
+  "products/productsFetch",
+  async () => {
+    const response = await axios.get("http://localhost:5000/products");
+    return response?.data;
+  }
+);
 
 const productsSlice = createSlice({
   name: "products",
@@ -22,12 +25,12 @@ const productsSlice = createSlice({
     },
     [productsFetch.fulfilled]: (state, action) => {
       state.status = "success";
-      state.items = action.payload
+      state.items = action.payload;
     },
     [productsFetch.rejected]: (state, action) => {
       state.status = "rejected";
-    }
-  }
+    },
+  },
 });
 
-export default productsSlice.reducer
+export default productsSlice.reducer;
