@@ -95,6 +95,7 @@ const cartSLice = createSlice({
     },
     paidProduct(state, action) {
       state.cartItems = [];
+      state.cartTotalQuantity = 0;
       toast.success("Muchas gracias por su compra!", {
         position: "top-center",
       });

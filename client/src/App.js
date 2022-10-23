@@ -10,6 +10,7 @@ import Postres from "./views/Postres";
 import PurchaseConfirmation from "./views/PurchaseConfirmation";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Checkout from "./views/Checkout";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/bebidas" element={<Bebidas />} />
         <Route path="/postres" element={<Postres />} />
         <Route path="/carrito" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout/>} />
         <Route
           path="/confirmacion-de-compra"
           element={<PurchaseConfirmation />}

@@ -7,7 +7,6 @@ import {
   decreaseCart,
   clearCart,
   getTotals,
-  paidProduct,
 } from "../features/cartSlice";
 
 const Cart = () => {
@@ -35,25 +34,18 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
-  const handlePaidProduct = () => {
-    dispatch(paidProduct());
-  };
-
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center mt-4">
+    <div className="container d-flex flex-column justify-content-center align-items-center mt-2">
       {cart.cartItems.length === 0 ? (
         <div className="">
           <h1 className="text-warning mt-5">Su carrito está vacío</h1>
         </div>
       ) : (
         <div>
-          <h2 className="text-info text-center">
-            Pago en efectivo con delivery
-          </h2>
           <div className="row">
             {cart.cartItems &&
               cart.cartItems.map((cartItem) => (
-                <div className="w-50 p-2 mt-4" key={cartItem.id}>
+                <div className="w-50 p-2 mt-3" key={cartItem.id}>
                   <div className="d-flex flex-column align-items-center">
                     <img
                       src={cartItem.imgUrl}
@@ -119,11 +111,10 @@ const Cart = () => {
                 </span>
               </div>
               <Link
-                to="/confirmacion-de-compra"
+                to="/checkout"
                 className="btn btn-outline-primary mx-4"
-                onClick={handlePaidProduct}
               >
-                Pagar
+                Verificar pago
               </Link>
             </div>
           </div>
