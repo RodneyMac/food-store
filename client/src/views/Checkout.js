@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { paidProduct } from "../features/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
@@ -32,7 +31,7 @@ const Checkout = () => {
     setCustomer({});
     console.log(clientData);
     console.log(`Total compra: ${cart.cartTotalAmount}`, newUser);
-    // console.log(`Productos: ${cart.cartItems}`);
+    console.log("Producto/s:", cart.cartItems);
 
     dispatch(paidProduct());
     navigate("/confirmacion-de-compra");
@@ -42,12 +41,20 @@ const Checkout = () => {
     <div className="container d-flex flex-column justify-content-center align-items-center">
       <h2 className="text-center mt-4 text-info">Checkout</h2>
       <h2 className="text-info text-center">Pago en efectivo con delivery</h2>
-      <div className="d-flex justify-content-center align-items-center mb-3">
-        <h4 className="text-info">Total: </h4>
-        <h4 className="text-warning mx-2">$ {cart.cartTotalAmount}</h4>
-        <div className="text-white">{cart.cartItems.map((item) => (
-          <div className="text-info" key={item.id}>{item.title}</div>
-        ))}</div>
+      <div className="d-flex flex-column justify-content-center align-items-center mb-3">
+        <div className="">
+          <div className="text-warning">Productos seleccionados:</div>
+          {cart.cartItems.map((item) => (
+            <div key={item.id}>
+              <div className="d-flex text-warning">{item.cartQuantity}
+                <div className="text-info mx-2">{item.title}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="d-flex align-items-center text-info fs-4">Total:
+          <div className="text-warning mx-2 fs-4">$ {cart.cartTotalAmount}</div>
+        </div>
       </div>
       <div className="w-50">
         <div className="mb-3">
