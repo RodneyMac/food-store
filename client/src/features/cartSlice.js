@@ -19,18 +19,9 @@ const cartSLice = createSlice({
       );
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        toast.info(
-          `Se incrementó ${state.cartItems[itemIndex].title} al carrito`,
-          {
-            position: "bottom-left",
-          }
-        );
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        toast.success(`${action.payload.title} añadida al carrito`, {
-          position: "bottom-left",
-        });
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
@@ -40,10 +31,6 @@ const cartSLice = createSlice({
       );
       state.cartItems = nextCartItems;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-
-      toast.error(`${action.payload.title} eliminada del carrito`, {
-        position: "bottom-right",
-      });
     },
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
@@ -51,19 +38,11 @@ const cartSLice = createSlice({
       );
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
-
-        toast.info(`Se disminuyó ${action.payload.title} del carrito`, {
-          position: "bottom-left",
-        });
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
           (cartItem) => cartItem.id !== action.payload.id
         );
         state.cartItems = nextCartItems;
-
-        toast.error(`${action.payload.title} eliminada del carrito`, {
-          position: "bottom-right",
-        });
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
