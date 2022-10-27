@@ -1,7 +1,7 @@
 console.clear();
 import * as dotenv from 'dotenv' 
-import connectDB from './backend/config/db.js';
-import httpServer from './backend/config/http.js';
+import connectDB from './config/db.js';
+import httpServer from './config/http.js';
 
 dotenv.config();
 
