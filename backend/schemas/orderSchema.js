@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-
+/*
+aca me falta definir bien el esquema de pedido con Rod
+ */
 const orderSchema = new mongoose.Schema({
  
   orden:{

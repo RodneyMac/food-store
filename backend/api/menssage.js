@@ -1,8 +1,10 @@
 import twilio from 'twilio';
 
-const accountSid = 'ACaa76dd59405afa5b19e42a5e0135d227'; 
-const authToken = '[Redacted]'; 
+/// Falta definir el mensaje
 
+const accountSid = 'ACaa76dd59405afa5b19e42a5e0135d227'; 
+const authToken = 'srthjmnbfgteyuyjfnbgwtey';
+console.log(process.env.PHONE);
 const client = twilio(accountSid, authToken);
  
 const sendMenssage = async (phone, menssage)=>{
@@ -16,7 +18,7 @@ try{
    });
 
 }catch(err){
-
+    return "error"
 }
 
 };

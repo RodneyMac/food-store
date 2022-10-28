@@ -16,6 +16,5 @@ App.use(cors());
 // Routes
 App.use('/products', productsRouter);
 App.use('/checkout', orderRouter);
-App.use(express.static('.../client/public'));
 
 export default App;
