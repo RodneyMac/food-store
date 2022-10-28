@@ -29,7 +29,7 @@ const Postres = () => {
               {data?.map((product) => {
                 if (product.category === "Postres") {
                   return (
-                    <div className="col-md-6 mt-4" key={product.id}>
+                    <div className="col-md-4 mt-4" key={product.id}>
                       <div className="d-flex flex-column justify-content-center align-items-center">
                         <img
                           src={product.imgUrl}
