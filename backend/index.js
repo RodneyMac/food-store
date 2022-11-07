@@ -1,5 +1,5 @@
 console.clear();
-import * as dotenv from 'dotenv';
+import  dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import httpServer from './config/http.js';
 

@@ -1,8 +1,16 @@
 
 import { Router } from "express";
-import sendMenssage from "../api/menssage.js";
 import OrderModel from '../schemas/orderSchema.js';
 import userJWTDTO from "../controllers/JWT.js";
+import twilio from 'twilio';
+
+
+/// Falta definir el mensaje
+
+const accountSid = 'ACaa76dd59405afa5b19e42a5e0135d227'; 
+const authToken = 'e0f69bfabd05788f9ccb250d45719585';
+
+const client = twilio(accountSid, authToken);
 
 const orderRouter = Router();
 
@@ -11,9 +19,9 @@ orderRouter.post("/", async(req, res) => {
   const order = new OrderModel({orden, address,phone ,price});
   await order.save();
 
-  sendMenssage();
+  const url = sendMenssage(order.id);
   // falta definir como enviar el mensaje
-  return res.sendStatus(200);
+  return res.status(200).send(url);
 });
 // falta testear
 orderRouter.patch("/", userJWTDTO ,async(req, res) => {

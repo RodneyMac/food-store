@@ -1,25 +1,11 @@
-import twilio from 'twilio';
+import dotenv from 'dotenv'
 
-/// Falta definir el mensaje
-
-const accountSid = 'ACaa76dd59405afa5b19e42a5e0135d227'; 
-const authToken = 'srthjmnbfgteyuyjfnbgwtey';
+dotenv.config();
 console.log(process.env.PHONE);
-const client = twilio(accountSid, authToken);
- 
-const sendMenssage = async (phone, menssage)=>{
 
-try{
-  const response = await client.messages 
-  .create({ 
-     body: `mi pedido es:${menssage}`, 
-     from: `whatsapp:${phone}`,       
-     to: `whatsapp:${process.env.PHONE}`
-   });
-
-}catch(err){
-    return "error"
-}
+const host = "localhttp://localhost:3000"
+const sendMenssage = async (id)=>{
+ return `https://api.whatsapp.com/send?phone=${process.env.PHONE}&text=mi%20pedido%20es:%20${host}/checkout/${id}`
 
 };
 
