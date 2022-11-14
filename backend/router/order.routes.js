@@ -1,56 +1,123 @@
-
 import { Router } from "express";
 import OrderModel from '../schemas/orderSchema.js';
-import userJWTDTO from "../controllers/JWT.js";
-import twilio from 'twilio';
+import sendMenssage from '../helpers/menssage.js'
+import idGen from "../helpers/idgen.js";
+import { SignJWT } from 'jose';
+import dotenv from 'dotenv';
+import userJWTDTO from "../helpers/JWT.js";
 
-
-/// Falta definir el mensaje
-
-const accountSid = 'ACaa76dd59405afa5b19e42a5e0135d227'; 
-const authToken = 'e0f69bfabd05788f9ccb250d45719585';
-
-const client = twilio(accountSid, authToken);
+dotenv.config({path:'../.env'})
 
 const orderRouter = Router();
 
 orderRouter.post("/", async(req, res) => {
-  const {id ,orden, address, phone,price} = req.body;
-  const order = new OrderModel({orden, address,phone ,price});
-  await order.save();
+  const {
+    order,
+    address,
+    phone,
+    price,
+    comment
+      } = req.body;
+      
+   const number = idGen();
 
-  const url = sendMenssage(order.id);
-  // falta definir como enviar el mensaje
-  return res.status(200).send(url);
+  const newOrder =  await OrderModel.create({ 
+     order,
+     address,
+     phone,
+     price,
+     comment,
+     number
+     });
+
+ 
+  const url = sendMenssage(newOrder);
+
+  const jwtConstructor = new SignJWT({ id: newOrder.number });
+  
+  const encoder = new TextEncoder();
+  const jwt = await jwtConstructor
+      .setProtectedHeader({
+          alg: 'HS256',
+          typ: 'JWT',
+      })
+      .setIssuedAt()
+      .setExpirationTime('15m')
+      .sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
+
+  return res.status(200).send({ jwt, url });
 });
-// falta testear
-orderRouter.patch("/", userJWTDTO ,async(req, res) => {
-  const { id } = req;
-    const { orden, address, phone,price } = req.body;
 
-    const existingOrder = await OrderModel.findById(id).exec();
-    if (!existingOrder)
-        return res.status(401).send({ errors: ['pedido no existente'] });
+orderRouter.put('/order:id', userJWTDTO, async (req, res) => {
+  console.log(req.params.id);
+  const number = req.params.id.substring(1);
+ const newOrder = OrderModel.findOne({
+  where:{
+    number
+  }
+ })
 
-    existingOrder.orden = orden;
-    existingOrder.address = address;
-    existingOrder.phone = phone;
-    existingOrder.price = price;
+ if(!newOrder) return res.status(404).send({
+  error:'pedido inexistente'
+ })
 
-    await existingOrder.save();
+  const {
+    order,
+    address,
+    phone,
+    price,
+    comment
+      } = req.body;
 
-    return res.send('Orden actualizado');
+    newOrder.order = order
+    newOrder.address = address
+    newOrder.phone = phone
+    newOrder.price = price
+    newOrder.comment = comment
+      
+
+  
+ newOrder.save();
+  //const url = sendMenssage(newOrder);
+  
+  return res.status(200).send('pedido editado exitosamente');
 });
 
-// falta definir con Rod
-orderRouter.get('/:id', userJWTDTO, async (req, res) => {
-  const order = await OrderModel.findById(req.params.id);
-  res.json(order);
+
+
+orderRouter.get('/order:id', userJWTDTO, async (req, res) => {
+
+  const number = req.params.id.substring(1);
+
+  console.log(number); 
+  const order = await OrderModel.findOne({
+    where:{
+      number
+    }
+   })
+ console.log(order)
+  if (!order)
+      return res.status(401).send({ errors: ['no existe ese pedido'] });
+
+  return res.status(200).json(
+    order
+  );
 });
 
-orderRouter.delete('/:id',userJWTDTO, async (req, res) => {
-  await OrderModel.findByIdAndRemove(req.params.id);
-  res.json({status: 'order deleted'});
-});
+orderRouter.delete('/order:id', userJWTDTO, async (req, res) => {
+  const number = req.params.id.substring(1);
+
+  if(!number) return res.status(404).res('pedido no encontrado')
+ 
+  await OrderModel.destroy({
+    where: {
+     number
+    },
+  });
+
+return res
+.status(200)
+.send('Pedido cancelado');
+})
 
 export default orderRouter;

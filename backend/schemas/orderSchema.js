@@ -1,45 +1,46 @@
-import mongoose from 'mongoose';
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
 
 /*
 aca me falta definir bien el esquema de pedido con Rod
  */
-const orderSchema = new mongoose.Schema({
- 
-  orden:{
-      require:true,
-      type:Object,
-      default:{}
+
+const OrderModel = sequelize.define(
+  "OrderModel",
+  {
+  id:{
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    },
+  number:{
+    type: DataTypes.STRING,
+    require:true,
+    unique:true
+  },
+  order:{
+    require:true,
+    type: DataTypes.STRING
   },
   phone:{
-    type:String,
+    type: DataTypes.STRING,
     require:true
   }
   ,
   address:{
-    city:{
-        type: String,
-        require: true
-      },
-    street:{
-        type: String,
-        require: true
-      },
-    number:{
-        type: String,
-        require: true
-      },
-     dto:String
-      
+      type: DataTypes.STRING,
+    require:true
     },
-    price:{
-      type:Number,
-      require:true
-    }
+  price:{
+      type: DataTypes.STRING,
+    require:true
+    },
+  comment:{
+      type: DataTypes.STRING,
+    require:true
+  }
 },{
  timestamps:true
 });
-
-
-const OrderModel = mongoose.model('order',orderSchema);
 
 export default OrderModel;

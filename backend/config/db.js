@@ -1,6 +1,18 @@
-import mongoose from 'mongoose';
+import Sequelize from "sequelize";
+import dotenv from 'dotenv';
 
-const connectDB = (url) =>
-    mongoose.connect(url).then(() => console.log('Database connected'));
 
-export default connectDB;
+dotenv.config();
+
+const sequelize = new Sequelize(
+  "PizzeriaRembolo", 
+  "postgres",
+   process.env.PASSWORD_PG,
+  {
+    host: "localhost",
+    dialect: "postgres",
+    port:process.env.DB_PORT || 5432,
+  }
+);
+
+export default sequelize;
