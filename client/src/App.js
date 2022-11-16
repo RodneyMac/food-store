@@ -11,10 +11,12 @@ import PurchaseConfirmation from "./views/PurchaseConfirmation";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Checkout from "./views/Checkout";
+import Logo from "./components/header";
 
 function App() {
   return (
     <div>
+      <Logo/>
       <Navbar />
       <ToastContainer />
       <Routes>

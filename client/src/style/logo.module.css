@@ -1,0 +1,26 @@
+.logo{
+    background-image: url('/src/img/Logo1.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 81px;
+    margin-bottom: 20px;
+}
+
+.categorias{
+position: flex;
+width: 111px;
+height: 27px;
+left: 16px;
+top: 125px;
+margin: 16px;
+
+font-family: 'Lilita One';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 27px;
+
+/* Color Secundario */
+
+color: #5171A5;
+}
